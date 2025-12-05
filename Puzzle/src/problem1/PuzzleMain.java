@@ -1,3 +1,5 @@
+package problem1;
+
 import java.util.Scanner;
 
 public class PuzzleMain {
