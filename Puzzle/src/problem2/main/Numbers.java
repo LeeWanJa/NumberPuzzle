@@ -5,14 +5,17 @@ import java.util.Collections;
 
 public class Numbers {
     int[][] numbers;
+    int[] coordinate;
 
-    private Numbers(int[][] numbers) {
+    private Numbers(int[][] numbers,  int[] coordinate) {
         this.numbers = numbers;
+        this.coordinate = coordinate;
     }
 
     // 1 ~ 15의 퍼즐 생성
     public static Numbers createNumbers(){
         int[][] newNumbers = new int[4][4];
+        int[] newCoordinate = new int[2];
         ArrayList<Integer> temp = new ArrayList<Integer>();
         for(int i = 0; i < 16; i++)
             temp.add(i);
@@ -26,10 +29,16 @@ public class Numbers {
 
         int idx = 0;
         for(int i = 0; i < 4; i++)
-            for(int j = 0; j < 4; j++)
+            for(int j = 0; j < 4; j++){
                 newNumbers[i][j] = temp.get(idx++);
 
-        return new Numbers(newNumbers);
+                if(newNumbers[i][j] == 0){
+                    newCoordinate[0] = j; // x축
+                    newCoordinate[1] = i; // y축
+                }
+            }
+
+        return new Numbers(newNumbers, newCoordinate);
     }
 
     // 유효한 퍼즐인지 검증
@@ -91,5 +100,64 @@ public class Numbers {
         }
 
         return result;
+    }
+
+    // 입력한 값과 빈칸 swap
+    public boolean swap(int inputValue) {
+        int[] inputCoordinate = getCoordinate(inputValue);
+
+        // 입력값의 위치가 빈칸의 위치에 인접해있는가?
+        if(isNeighnor(coordinate, inputCoordinate)) {
+            // 위치 바꾸고 빈칸 위치 갱신
+            numbers[coordinate[1]][coordinate[0]] = inputValue;
+            numbers[inputCoordinate[1]][inputCoordinate[0]] = 0;
+            coordinate[0] = inputCoordinate[0];
+            coordinate[1] = inputCoordinate[1];
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // 해당 값의 좌표 추출
+    private int[] getCoordinate(int value) {
+        int[] resultCoordinate = new int[2];
+
+        // 입력값의 위치 추출
+        for(int i = 0; i < 4; i++)
+            for(int j = 0; j < 4; j++)
+                if(numbers[i][j] == value){
+                    resultCoordinate[0] = j;
+                    resultCoordinate[1] = i;
+                    break;
+                }
+
+        return resultCoordinate;
+    }
+
+    private boolean isNeighnor(int[] coordinate, int[] inputCoordinate) {
+        int blankX = coordinate[0];
+        int blankY = coordinate[1];
+        int inputX = inputCoordinate[0];
+        int inputY = inputCoordinate[1];
+
+        // 왼쪽 숫자 입력
+        if(blankX - 1 == inputX && blankY == inputY)
+            return true;
+
+        // 오른쪽 숫자 입력
+        if(blankX + 1 ==  inputX && blankY == inputY)
+            return true;
+
+        // 위 숫자 입력
+        if(blankX == inputX && blankY - 1 == inputY)
+            return true;
+
+        // 아래 숫자 입력
+        if(blankX == inputX && blankY + 1 == inputY)
+            return true;
+
+        return false;
     }
 }

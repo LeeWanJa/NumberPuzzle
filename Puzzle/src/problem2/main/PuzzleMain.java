@@ -20,18 +20,18 @@ public class PuzzleMain {
             if((inputValue = checkInput(input)) == -1)
                 continue;
 
-//            // swap
-//            if(!numbers.swap(inputValue)){
-//                System.out.println("빈칸에 '상/하/좌/우'로 인접한 숫자를 입력해주세요!");
-//                continue;
-//            }
+            // swap
+            if(!numbers.swap(inputValue)){
+                System.out.println("빈칸에 '상/하/좌/우'로 인접한 숫자를 입력해주세요!");
+                continue;
+            }
 //
 //            // 정렬 검증
 //            if(numbers.isSort()){
 //                System.out.println("축하합니다! " + turn + "턴만에 퍼즐을 완성하셨습니다!");
 //                break;
 //            }
-            System.out.println("Turn " + turn);
+            System.out.println("Turn " + ++turn);
         }
     }
 
