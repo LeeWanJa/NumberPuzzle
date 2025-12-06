@@ -132,6 +132,7 @@ public class Numbers {
         return resultCoordinate;
     }
 
+    // 상/하/좌/우 좌표 검사
     private boolean isNeighnor(int[] coordinate, int[] inputCoordinate) {
         int blankX = coordinate[0];
         int blankY = coordinate[1];
@@ -157,6 +158,7 @@ public class Numbers {
         return false;
     }
 
+    // 정렬 검사
     public boolean isSort(){
         int value = 1;
 
@@ -175,6 +177,7 @@ public class Numbers {
         return true;
     }
 
+    // 정렬 검사를 위한 치트 메서드
     public void cheat() {
         int value = 1;
         for(int i = 0; i < 4; i++){
