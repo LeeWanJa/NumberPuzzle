@@ -18,7 +18,12 @@ public class Numbers {
             temp.add(i);
 
         // 검증
-        Collections.shuffle(temp);
+        while(true){
+            Collections.shuffle(temp);
+
+            if(checkNumbers(temp))
+                break;
+        }
 
         int idx = 0;
         for(int i = 0; i < 4; i++) {
@@ -31,8 +36,8 @@ public class Numbers {
     }
 
     // 유효한 퍼즐인지 검증
-    private boolean checkNumbers(){
-        return false;
+    private static boolean checkNumbers(ArrayList<Integer> numbers){
+        return true;
     }
 
     // 2차원 배열 출력
