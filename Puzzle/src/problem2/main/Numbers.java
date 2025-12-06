@@ -103,7 +103,7 @@ public class Numbers {
         int[] inputCoordinate = getCoordinate(inputValue);
 
         // 입력값의 위치가 빈칸의 위치에 인접해있는가?
-        if(isNeighnor(coordinate, inputCoordinate)) {
+        if(isNeighbor(coordinate, inputCoordinate)) {
             // 위치 바꾸고 빈칸 위치 갱신
             numbers[coordinate[1]][coordinate[0]] = inputValue;
             numbers[inputCoordinate[1]][inputCoordinate[0]] = 0;
@@ -133,7 +133,7 @@ public class Numbers {
     }
 
     // 상/하/좌/우 좌표 검사
-    private boolean isNeighnor(int[] coordinate, int[] inputCoordinate) {
+    private boolean isNeighbor(int[] coordinate, int[] inputCoordinate) {
         int blankX = coordinate[0];
         int blankY = coordinate[1];
         int inputX = inputCoordinate[0];
