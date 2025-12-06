@@ -14,7 +14,7 @@ public class PuzzleMain {
         // 퍼즐 시작!
         System.out.println("Turn " + turn);
         System.out.println(numbers.toString());
-        while(!numbers.isSort()){
+        while(true){
             // 정수 입력
             System.out.println("교환할 두 숫자를 입력>");
             String[] inputs = scan.nextLine().split(",");
@@ -31,8 +31,11 @@ public class PuzzleMain {
             // 두 수 swap
             numbers.swap(first, second);
 
+            if(numbers.isSort())
+                break;
+
             turn++;
-            System.out.println("Turn " + turn);
+            System.out.println("\nTurn " + turn);
             System.out.println(numbers.toString() + "\n");
         }
         System.out.println("축하합니다! " + turn + "턴만에 퍼즐을 완성하셨습니다!");
