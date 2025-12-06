@@ -1,4 +1,4 @@
-package problem2;
+package problem2.main;
 
 public class PuzzleMain {
     public static void main(String[] args) {
