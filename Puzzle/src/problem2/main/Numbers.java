@@ -78,10 +78,6 @@ public class Numbers {
         return num % 2 == 0;
     }
 
-    public int[][] getNumbers() {
-        return numbers;
-    }
-
     // 2차원 배열 문자열로 출력
     @Override
     public String toString() {
@@ -159,5 +155,39 @@ public class Numbers {
             return true;
 
         return false;
+    }
+
+    public boolean isSort(){
+        int value = 1;
+
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                if(numbers[i][j] == 0){
+                    value++;
+                    continue;
+                }
+
+                if(numbers[i][j] != value++)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void cheat() {
+        int value = 1;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                if(i == 3 && j == 2){
+                    numbers[i][j] = 0;
+                    coordinate[0] = j;
+                    coordinate[1] = i;
+                    continue;
+                }
+
+                numbers[i][j] = value++;
+            }
+        }
     }
 }
